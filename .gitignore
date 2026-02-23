@@ -1,0 +1,12 @@
+Results/*
+src/compiled_packages/*
+src/stubgen_output/*
+src/config/cfg/*
+src/config/schemas/*
+src/nodeTrajectories/positions/*
+uv.lock
+src/*
+!src/*.py
+!src/config/cfg/default.yaml
+!src/config/schemas/schema.yaml
+!src/nodeTrajectories/positions/NodePositions.txt
