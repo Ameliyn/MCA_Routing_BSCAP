@@ -2,6 +2,16 @@
 
 This code has been adapted from [SPEproject-802.11DCFsim](https://github.com/riccardomicheletto/SPEproject-802.11DCFsim). It provides a discrete event simulator for the **802.11 CSMA/CA DCF based routing protocol with adaptive MCS-SNR capabilities**. The simulator is written in Python and it leverages on the [Simpy](https://simpy.readthedocs.io/en/latest/) framework. The code is developed on Ubuntu 20.04 LTS using Python version 3.13. To install the dependencies required to run the code, execute the following command: ``pip install -r requirements.txt``. This will install packages such as Simpy, Scipy, Pandas, Matplotlib and Networkx.
 
+### BRIEF SETUP / USAGE
+
+1. Set up your virtual environment using pip or uv
+2. Run the code using the following:
+
+```bash
+cd src/config/ && python3 set_schema.py
+cd src && python3 main.py $SEED # set $SEED to some integer
+```
+
 ### Usage
 
 After installing Simpy, run the main file to execute the simulator with `python main.py [seed]`. You will be prompted to enter some config options. Default values will be prefilled which you can modify. For advanced users: Modify parameter(s) within config files within ./config/cfg to modify the simulation settings. The default config file is ./config/cfg/default.yaml which can be used as a template for creating config files. A config file can be passed in using the --config option. The interactive prompts can be suppressed using --no-input, in case you only want to use config files. Run `set_schema.py` to set up config variables, and JSONSchema vscode settings. After this, hovering keys in the configuration file should display an explanation of the configuration keys. Otherwise, this information can be viewed in `schema.yaml`. A more detailed README specifically for the config is available in `./config/config.md`

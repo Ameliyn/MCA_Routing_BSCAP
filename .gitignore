@@ -4,6 +4,9 @@ src/stubgen_output/*
 src/config/cfg/*
 src/config/schemas/*
 src/nodeTrajectories/*
+!src/nodeTrajectories/positions
+src/nodeTrajectories/positions/*
+!src/nodeTrajectories/positions/NodePositions.txt
 uv.lock
 src/*.*
 **/__pycache__
@@ -12,4 +15,3 @@ src/*.*
 !src/mobility_bscap/*.py
 !src/config/cfg/default.yaml
 !src/config/schemas/schema.yaml
-!src/nodeTrajectories/positions/NodePositions.txt
