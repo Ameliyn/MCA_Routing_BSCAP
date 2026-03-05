@@ -7,9 +7,17 @@ This code has been adapted from [SPEproject-802.11DCFsim](https://github.com/ric
 1. Set up your virtual environment using pip or uv
 2. Run the code using the following:
 
+<br>Using Pip:
 ```bash
+source ./venv/Scripts/activate
 cd src/config/ && python3 set_schema.py
 cd src && python3 main.py $SEED # set $SEED to some integer
+```
+Using uv:
+```bash
+uv sync
+cd src/config/ && uv run set_schema.py
+cd src && uv run main.py $SEED # set $SEED to some integer
 ```
 
 ### Usage
