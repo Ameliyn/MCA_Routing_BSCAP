@@ -8,6 +8,8 @@ uv.lock
 src/*.*
 **/__pycache__
 !src/*.py
+!src/phero_c.pyx
+!src/phero_c.pyi
 !src/mobility_bscap
 !src/mobility_bscap/*.py
 !src/config/cfg/default.yaml
