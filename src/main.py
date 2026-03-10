@@ -28,10 +28,13 @@ import yaml
 compiled_packages = Path("compiled_packages").resolve().as_posix()
 
 sys.path.insert(0, compiled_packages)
-if hasattr(os, 'add_dll_directory'):
-	os.add_dll_directory(compiled_packages)
-else:
-	os.environ['PATH'] = '/path/to/dll_or_so' + os.pathsep + os.environ['PATH']
+try:
+	if hasattr(os, 'add_dll_directory'):
+		os.add_dll_directory(compiled_packages)
+	else:
+		os.environ['PATH'] = '/path/to/dll_or_so' + os.pathsep + os.environ['PATH']
+except:
+	pass
 
 import argparse
 import ast
