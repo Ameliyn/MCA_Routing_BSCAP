@@ -46,6 +46,7 @@ PACKET_TTL: float
 MOBILITY_MODEL: str
 AREA_X: float
 AREA_Y: float
+# MAXIMUM_ROUTING_RANGE: int
 NUMBER_OF_BS: int
 NUMBER_OF_NODES: int
 MAX_QUEUE_SIZE: int
@@ -208,7 +209,13 @@ DistToFurthestNodeInRange: list[float]
 
 
 MAX_POWER_MULTIPLE = 2.75 # At 2.8 (with margin 1.0), node may overcome its 1 hop neighbor's transmission, which we don't want
-MAXIMUM_ROUTING_RANGE = 1200
+# try:
+# 	if MAXIMUM_ROUTING_RANGE:
+# 		print(f'MAXIMUM_ROUTING_RANGE: {MAXIMUM_ROUTING_RANGE}')
+# except Exception as e:
+# 	MAXIMUM_ROUTING_RANGE = 1200
+# 	print(f'MAXIMUM_ROUTING_RANGE (Default): {MAXIMUM_ROUTING_RANGE}')
+
 # ANDRES: Dictionary to save the nodes once they are created so that you can access the node with the node name (node "name" strings are the keys, and nodes (class NODE) are the values)
 NODE_REGISTRY: Dict[str, 'Node'] = {}
 # ANDRES: Dictionary to store the transmission powers in the corresponding index representing the 100m distance intervals.
@@ -230,7 +237,6 @@ def init_parameters(config_path: str, schema_path: str, only_load_configs: bool 
 		print(f"Loaded config from {config_path}, using schema from {schema_path}")
 		finish_setup()
 		create_snapshot()
-
 
 INCLUDE_DIRS = [
     "config",
@@ -325,6 +331,7 @@ def finish_setup():
 		modified_stdout = True
 	
 	global Transmitting_Power, Maximum_Transmitting_Power
+	print(f'MAXIMUM_ROUTING_RANGE: {MAXIMUM_ROUTING_RANGE}')
 	Transmitting_Power = getTransmitPower(MAXIMUM_ROUTING_RANGE)
 	Maximum_Transmitting_Power = getMaximumTransmitPower(DEFAULT_DATA_MCS_INDEX) # Refer to professor's notes
 	print(f"{Transmitting_Power = }, {Maximum_Transmitting_Power = }")
@@ -399,7 +406,7 @@ def finish_setup():
 	# TRAJECTORY_FOLDER 
 	time_rows = int(SIM_TIME/1e9) - int(PKT_GENERATION_START_SEC)
 	Node_Location_Waypoint = np.zeros( (NUMBER_OF_NODES, time_rows , 4) )
-
+	
 	print("parameters.py INITIALIZED")
 	
 	# NODE_LOCATIONS_MOBILITY = np.zeros(parameters.NUMBER_OF_NODES, 2)

@@ -252,13 +252,27 @@ def main():
 	# ANDRES: create the gif for the distance-transmission power graph if the adaptive power scheme is enabled
 	# if parameters.ENABLE_POWER_CONTROL:
 	rf.createGif_Distance_TxPower()
+	try:
+		statistics.plotCumulativePackets()
+	except Exception as e:
+		print(f'{e}')
+	try:
+		statistics.plotThroughput()
+	except Exception as e:
+		print(f'{e}')
+	try:
+		statistics.plotThroughputMs()
+	except Exception as e:
+		print(f'{e}')
+	try:
+		statistics.plotDelays()
+	except Exception as e:
+		print(f'{e}')
+	try:
+		statistics.plotRetransmissions()
+	except Exception as e:
+		print(f'{e}')
 
-	statistics.plotCumulativePackets()
-	statistics.plotThroughput()
-	statistics.plotThroughputMs()
-	statistics.plotDelays()
-	statistics.plotRetransmissions()
-	
 	for each_node in parameters.NODE_REGISTRY.values():
 		print(f"{each_node.name}")
 		print(f"Avg Received Power: {each_node.mac.phy.total_power_received.mean():.2e}, ", end='')
@@ -406,6 +420,7 @@ def parse_args() -> tuple[argparse.Namespace, dict[str, str]]:
 	parser.add_argument("seed", type=int, help="Seed value for run")
 	parser.add_argument("--no-input", action="store_true",
 							help="Disable interactive prompts")
+	parser.add_argument('--multi', action='store_true', help='Run multiple configurations')
 	
 	# DEFAULT Locations of config and schema unless paths are passed in using --config=[CONFIG_PATH] or --schema-[SCHEMA_PATH]
 	parser.add_argument("--config", type=str, help="Path to the config file to use", default="config/cfg/default.yaml")
@@ -461,6 +476,7 @@ def set_config_value(attr_path: str, value: str) -> None:
 				break
 
 	converted = infer_type_and_convert(value, inferred_type)
+	print(f'Setting config values: {current_value} -> {converted}')
 	setattr(module_var, final_attr, converted)
 
 
@@ -573,19 +589,10 @@ def build_overrides(values: dict[str, Any]) -> dict[str, Any]:
 
 	return root
 
-if __name__ == '__main__':
+def read_args(args: argparse.Namespace, overrides: dict[str, str]):
+	"""Run this before main"""
 	
-	# Get args excluding filename
-	total_args = len(sys.argv) -1
-	args, overrides = parse_args()
-
-	if (total_args == 0):
-		print("ERROR NO input argument to main.py")
-		# random.seed(7447)
-		# np.random.seed(random_seed)
-		# main()
-		exit()
-	
+	print("Initializing Parameters")
 	parameters.init_parameters(config_path=args.config, schema_path=args.schema, only_load_configs=True) # Only loading configs so we know the types for interactive input
 	
 	loaded_schema: dict[str, Any] = {}
@@ -618,6 +625,8 @@ if __name__ == '__main__':
 	
 	random.seed(random_seed)
 	np.random.seed(random_seed) #SHREY*: Added np.random.seed(random_seed)
+
+def prerun(random_seed: int):
 
 	traffic_flows = len(parameters.MOBILITY.TARGET_LOCATION) if parameters.MOBILE_SCENARIO else len(parameters.FORCED_ROUTES)
 
@@ -672,4 +681,73 @@ if __name__ == '__main__':
 
 	#save BSCAP node trajectories
 	save_NodeTrajectories(parameters.TRAJECTORY_FOLDER + "Flows{}/".format(traffic_flows) ) #SHREY*: saving node trajectories
+	
+if __name__ == '__main__':
+	# Get args excluding filename
+	total_args = len(sys.argv) -1
+	args, overrides = parse_args()
+
+	if (total_args == 0):
+		print("ERROR NO input argument to main.py")
+		# random.seed(7447)
+		# np.random.seed(random_seed)
+		# main()
+		exit()
+
+	if not args.multi:
+		read_args(args, overrides)
+		prerun(args.seed)
+		exit()
+
+
+	
+	topology_files = ["./nodeTrajectories/positions/daisy_chain_small.txt", "./nodeTrajectories/positions/daisy_chain_medium.txt", "./nodeTrajectories/positions/daisy_chain_large.txt"]
+	
+	# Set target locations as the first node in the topology (because the last is the base station)
+	targets = []
+	for topo in topology_files:
+		with open(f'{topo}', 'r') as f:
+			targets.append(f'[{f.readline().strip()}]')
+		
+	max_routing_ranges = [1200, 2400]
+	flow_data_rates = [1.5, 2.0, 4.0]
+	MCS_types = [1,0]
+		
+	# Load types
+
+	total_count = len(topology_files) * len(max_routing_ranges) * len(flow_data_rates) * len(MCS_types)
+	count = 1
+	for topology, target in zip(topology_files, targets):
+		for routing_range in max_routing_ranges:
+			if routing_range != 2400 and 'large' in topology:
+				continue
+			for data_rate in flow_data_rates:
+				for mcs in MCS_types:
+					
+					parameters.init_parameters(config_path=args.config, schema_path=args.schema, only_load_configs=True) # Only loading configs so we know the types for interactive input
+
+					output_folder = f'./../Results_Multi/{topology.split("/")[1].split(".")[0]}_{routing_range}_{str(data_rate).replace(".","-")}_{mcs}/'
+					print(f"Simulating {count}/{total_count}: {output_folder}")
+					count += 1
+
+					# do overrides
+					overrides['RESULTS_FOLDER'] = output_folder
+					overrides['STATIC_TOPOLOGY_PATH'] = f'{topology}'
+					overrides['MOBILITY.TARGET_LOCATION'] = f'[{target}]'
+					overrides['MAXIMUM_ROUTING_RANGE'] = str(routing_range)
+					overrides['PAYLOAD_DATA_RATE'] = f'[{data_rate}]'
+					overrides['DEFAULT_DATA_MCS_INDEX'] =  f'{mcs}'
+
+					default_args = f'--config .\\config\\cfg\\daisy_chain.yaml --schema .\\config\\schemas\\daisy_schema.json --no-input'
+					override_string = ''
+					for key,value in overrides.items():
+						override_string += f'--{key}={value} '
+
+					read_args(args, overrides)
+					try:
+						prerun(random.randint(1,1000))
+					except Exception as e:
+						print('f{e}')
+						print('Moving on to next run.')
+
 	

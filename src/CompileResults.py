@@ -590,10 +590,10 @@ def plot_instantaneous_pdr(csv_path):
     print(f"Plot saved to: {plot_filename}")
     
     # Also try to display if possible
-    try:
-        plt.show()
-    except:
-        print("Display not available, plot saved to file only.")
+    # try:
+    #     plt.show()
+    # except:
+    #     print("Display not available, plot saved to file only.")
     
     plt.close()  # Close the plot to free memory
     
@@ -654,15 +654,15 @@ def plot_delay_over_time(records_folder, nth=5, scatter_alpha=0.2, window=100):
     plt.savefig(delay_plot_path, dpi=300, bbox_inches='tight')
     print(f"Delay-over-time plot saved to: {delay_plot_path}")
 
-    try:
-        plt.show()
-    except:
-        print("Display not available, plot saved to file only.")
-    plt.close()
+    # try:
+    #     plt.show()
+    # except:
+    #     print("Display not available, plot saved to file only.")
+    # plt.close()
 
 if __name__ == "__main__":
     folder = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else Path("./../Results/").resolve()
-    sys.stdout = open(folder / "res.out", "w")
+    sys.stdout = open(folder / "compile_res.out", "w")
     get_stats(folder, "")
     plot_instantaneous_pdr(os.path.join(folder, "instantaneous_pdr.csv"))
     plot_delay_over_time(folder)
