@@ -1,0 +1,56 @@
+Rows with invalid delay (0 or inf):
+                               Pkt ID            Route  Generation Time (in s)  First Tx At (in s)  ...  Min. SINR Along Route  SINR at Flow Dest  Min. Data Rate Along Route (in Mbps)  Data Rate at Flow Src (in Mbps)
+0      2000002049165_Node0_Node4_Zero  [0, 1, 2, 3, 4]             2000.002049         2000.002339  ...               2.396369                inf                                    22                               22
+1      2000004099172_Node0_Node4_Zero  [0, 1, 2, 3, 4]             2000.004099         2000.043377  ...               2.396369                inf                                    22                               22
+2      2000006150737_Node0_Node4_Zero  [0, 1, 2, 3, 4]             2000.006151         2000.043377  ...               2.396369                inf                                    22                               22
+3      2000008203343_Node0_Node4_Zero  [0, 1, 2, 3, 4]             2000.008203         2000.045447  ...               2.396369                inf                                    22                               22
+4      2000010254654_Node0_Node4_Zero  [0, 1, 2, 3, 4]             2000.010255         2000.045447  ...               2.396369                inf                                    22                               22
+...                               ...              ...                     ...                 ...  ...                    ...                ...                                   ...                              ...
+24012  2099992204649_Node0_Node4_Zero  [0, 1, 2, 3, 4]             2099.992205         2102.756760  ...               3.320415                inf                                    22                               22
+24013  2099994251779_Node0_Node4_Zero  [0, 1, 2, 3, 4]             2099.994252         2102.756760  ...               3.320415                inf                                    22                               22
+24014  2099996304569_Node0_Node4_Zero  [0, 1, 2, 3, 4]             2099.996305         2102.758850  ...               3.320415                inf                                    22                               22
+24015  2099998358741_Node0_Node4_Zero  [0, 1, 2, 3, 4]             2099.998359         2102.758850  ...               3.320415                inf                                    22                               22
+24016  2100000411730_Node0_Node4_Zero  [0, 1, 2, 3, 4]             2100.000412         2102.761000  ...               3.320415                inf                                    22                               22
+
+[83 rows x 14 columns]
+Parent directory is not in 'WARx' format.
+DEBUG Flow file=Flow_Node0-Node5.csv, Extracted src=0, dst=5
+DEBUG Route dict candidate=[0, 5]
+Unique nodes participated for this flow: [0, 1, 2, 3, 4]
+node 0 total drops: 0 drop_expiry 0 0 drop_q_mngmnt 0 0 drop_retry 0 0 drop_overflow 0 0 drop_no_route 0 0
+node 1 total drops: 0 drop_expiry 0 0 drop_q_mngmnt 0 0 drop_retry 0 0 drop_overflow 0 0 drop_no_route 0 0
+node 2 total drops: 0 drop_expiry 0 0 drop_q_mngmnt 0 0 drop_retry 0 0 drop_overflow 0 0 drop_no_route 0 0
+node 3 total drops: 0 drop_expiry 0 0 drop_q_mngmnt 0 0 drop_retry 0 0 drop_overflow 0 0 drop_no_route 0 0
+node 4 total drops: 0 drop_expiry 0 0 drop_q_mngmnt 0 0 drop_retry 0 0 drop_overflow 0 0 drop_no_route 0 0
+                                                                                              File Path Run No Packets Generated Packets Received       PDR Avg Delay #Retransmissions #Forwards Avg Route Length %Route Uptime %HQ Route Uptime Route Switches Packet Drop (Expiry) Packet Drop (Queue Management) Packet Drop (Retry) Packet Drop (Overflow) Packet Drop (No Route) Packet Reinserted (TCP)          Flow_ID
+C:\Users\Ameliyn\MCA_Routing_BSCAP\Results_Multi_N100\daisy_chain_large_2400_8-0_1\Flow_Node0-Node5.csv      1             48800            23934  0.490451  2.298115            29108     95801              4.0           1.0              1.0              0                    0                              0                   0                      0                      0                       0 Flow_Node0-Node5
+                                                                                                   Mean                  48800.0          23934.0  0.490451  2.298115          29108.0   95801.0              4.0           1.0              1.0            0.0                                                                                                                                                               
+                                                                                                 Median                  48800.0          23934.0  0.490451  2.298115          29108.0   95801.0              4.0           1.0              1.0            0.0                                                                                                                                                               
+                                                                                           95% CI Lower                      NaN              NaN       NaN       NaN              NaN       NaN              NaN           NaN              NaN            NaN                                                                                                                                                               
+                                                                                           95% CI Upper                      NaN              NaN       NaN       NaN              NaN       NaN              NaN           NaN              NaN            NaN                                                                                                                                                               
+Instantaneous PDR data saved to C:\Users\Ameliyn\MCA_Routing_BSCAP\Results_Multi_N100\daisy_chain_large_2400_8-0_1\instantaneous_pdr.csv
+
+=== Flow-level Summary (All Metrics) ===
+Empty DataFrame
+Columns: [Pkt ID, Route, Generation Time (in s), First Tx At (in s), Delay (in s), Times Packet Forwarded, Retransmissions, Packet Size (in bytes), Tx Power (in watt), Average Transmission Power in the route (in watt), Min. SINR Along Route, SINR at Flow Dest, Min. Data Rate Along Route (in Mbps), Data Rate at Flow Src (in Mbps), Base Packet ID]
+Index: []
+
+Flow Flow_Node0-Node5:
+  Packets Generated: 48800.00
+  Packets Received : 23934.00
+  PDR              : 0.490
+  Avg Delay (s)    : 2.2981
+  Max Delay (s)    : 2.8807
+  95th %ile Delay(s): 2.7561
+  Retransmissions  : 29108.00
+  Forwards         : 95801.00
+  Drops (Expiry)   : 0
+  Drops (Queue Mgmt): 0
+  Drops (Retry)    : 0
+  Drops (Overflow) : 0
+  Drops (No Route) : 0
+  TCP Reinsertions : 0
+Avg:  Packets generated: 48800 Packets received: 23934 PDR: 0.49045081967213117 Avg delay: 2.298114994777304 Retransmissions: 29108 Packet forwards: 95801 Route length: 4.0 Route uptime: 1.0 HQ Route Uptime: 1.0 Route switches: 0.0 
+
+Plot saved to: C:\Users\Ameliyn\MCA_Routing_BSCAP\Results_Multi_N100\daisy_chain_large_2400_8-0_1\instantaneous_pdr_plot.png
+Delay-over-time plot saved to: C:\Users\Ameliyn\MCA_Routing_BSCAP\Results_Multi_N100\daisy_chain_large_2400_8-0_1\delay_over_time.png
