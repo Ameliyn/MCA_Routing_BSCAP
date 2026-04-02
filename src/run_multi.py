@@ -22,15 +22,11 @@ if __name__ == '__main__':
 		
 	# Load types
 
-	total_count = len(topology_files) * len(max_routing_ranges) * len(flow_data_rates) * len(MCS_types)
+	total_count = len(topology_files) * len(flow_data_rates) * len(MCS_types)
 	count = 1
 	overrides = {}
 	for topology, target, routing_range in zip(topology_files, targets, max_routing_ranges):
 		for data_rate in flow_data_rates:
-			if routing_range == 600 and data_rate in [1.5,2.0,4.0]:
-				print(f'Skipping {topology}_{routing_range}_{str(data_rate).replace(".","-")}')
-				continue
-
 			seeds = [random.randint(1,1000), random.randint(1,1000)]
 			override_strings = []
 			results_folders = []
