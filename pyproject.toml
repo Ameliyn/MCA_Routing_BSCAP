@@ -8,6 +8,7 @@ dependencies = [
     "asteval>=1.0.8",
     "cython>=3.2.4",
     "jsonschema>=4.26.0",
+    "jupyter>=1.1.1",
     "line-profiler>=5.0.0",
     "matplotlib>=3.10.8",
     "mypy>=1.19.1",
