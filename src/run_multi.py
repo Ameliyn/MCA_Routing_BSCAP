@@ -8,7 +8,8 @@ def subprocess(seed: int, default_args: str, override_string: str, results_folde
 	os.system(f'uv run ./CompileResults.py {results_folder}')
 
 if __name__ == '__main__':
-	topology_files = ["./nodeTrajectories/positions/daisy_chain_small.txt", "./nodeTrajectories/positions/daisy_chain_medium.txt", "./nodeTrajectories/positions/daisy_chain_large.txt"]
+	# topology_files = ["./nodeTrajectories/positions/daisy_chain_small.txt", "./nodeTrajectories/positions/daisy_chain_medium.txt", "./nodeTrajectories/positions/daisy_chain_large.txt"]
+	topology_files = ["./nodeTrajectories/positions/daisy_chain_small.txt", "./nodeTrajectories/positions/daisy_chain_medium.txt"]
 	
 	# Set target locations as the first node in the topology (because the last is the base station)
 	targets = []
@@ -16,7 +17,7 @@ if __name__ == '__main__':
 		with open(f'{topo}', 'r') as f:
 			targets.append(f'[{f.readline().strip()}]')
 		
-	max_routing_ranges = [600, 1200, 2400] #Small medium large
+	max_routing_ranges = [500, 1000, 2000] #Small medium large
 	flow_data_rates = [1.5, 2.0, 4.0, 8.0]
 	MCS_types = [1,0]
 		
@@ -39,7 +40,7 @@ if __name__ == '__main__':
 				overrides['RESULTS_FOLDER'] = f'{output_folder}'
 				overrides['STATIC_TOPOLOGY_PATH'] = f'{topology}'
 				overrides['MOBILITY.TARGET_LOCATION'] = f'[{target}]'
-				overrides['MAXIMUM_ROUTING_RANGE'] = str(routing_range)
+				overrides['MAXIMUM_ROUTING_RANGE'] = str(routing_range+100)
 				overrides['PAYLOAD_DATA_RATE'] = f'[{data_rate}]'
 				overrides['DEFAULT_DATA_MCS_INDEX'] =  f'{mcs}'
 
