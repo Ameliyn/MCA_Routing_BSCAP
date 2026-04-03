@@ -1,7 +1,0 @@
-Time_Window,Generated_Packets,Received_Packets,Instantaneous_PDR,Flow_ID,File_Path
-2000.0-2001.0,244,164,0.6721311475409836,Flow_Node0-Node6,C:\Users\Ameliyn\MCA_Routing_BSCAP\Results_Multi_N4\daisy_chain_small_1200_4-0_0\Flow_Node0-Node6.csv
-2001.0-2002.0,244,170,0.6967213114754098,Flow_Node0-Node6,C:\Users\Ameliyn\MCA_Routing_BSCAP\Results_Multi_N4\daisy_chain_small_1200_4-0_0\Flow_Node0-Node6.csv
-2002.0-2003.0,244,166,0.680327868852459,Flow_Node0-Node6,C:\Users\Ameliyn\MCA_Routing_BSCAP\Results_Multi_N4\daisy_chain_small_1200_4-0_0\Flow_Node0-Node6.csv
-2003.0-2004.0,243,171,0.7037037037037037,Flow_Node0-Node6,C:\Users\Ameliyn\MCA_Routing_BSCAP\Results_Multi_N4\daisy_chain_small_1200_4-0_0\Flow_Node0-Node6.csv
-2004.0-2005.0,0,176,176.0,Flow_Node0-Node6,C:\Users\Ameliyn\MCA_Routing_BSCAP\Results_Multi_N4\daisy_chain_small_1200_4-0_0\Flow_Node0-Node6.csv
-2005.0-2006.0,0,130,130.0,Flow_Node0-Node6,C:\Users\Ameliyn\MCA_Routing_BSCAP\Results_Multi_N4\daisy_chain_small_1200_4-0_0\Flow_Node0-Node6.csv

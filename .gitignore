@@ -1,5 +1,6 @@
 Results/*
 src/compiled_packages/*
+compiled_packages/*
 src/stubgen_output/*
 uv.lock
 src/*.*

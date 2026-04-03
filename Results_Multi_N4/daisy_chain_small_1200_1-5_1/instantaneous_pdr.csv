@@ -1,5 +1,0 @@
-Time_Window,Generated_Packets,Received_Packets,Instantaneous_PDR,Flow_ID,File_Path
-2000.1-2001.1,92,99,1.076086956521739,Flow_Node0-Node6,C:\Users\Ameliyn\MCA_Routing_BSCAP\Results_Multi_N4\daisy_chain_small_1200_1-5_1\Flow_Node0-Node6.csv
-2001.1-2002.1,92,92,1.0,Flow_Node0-Node6,C:\Users\Ameliyn\MCA_Routing_BSCAP\Results_Multi_N4\daisy_chain_small_1200_1-5_1\Flow_Node0-Node6.csv
-2002.1-2003.1,92,92,1.0,Flow_Node0-Node6,C:\Users\Ameliyn\MCA_Routing_BSCAP\Results_Multi_N4\daisy_chain_small_1200_1-5_1\Flow_Node0-Node6.csv
-2003.1-2004.1,83,83,1.0,Flow_Node0-Node6,C:\Users\Ameliyn\MCA_Routing_BSCAP\Results_Multi_N4\daisy_chain_small_1200_1-5_1\Flow_Node0-Node6.csv
