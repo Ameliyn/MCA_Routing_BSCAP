@@ -1,14 +1,9 @@
 Results/*
 src/compiled_packages/*
 src/stubgen_output/*
-src/config/cfg/*
-src/config/schemas/*
-src/nodeTrajectories/*
-!src/nodeTrajectories/positions
-src/nodeTrajectories/positions/*
-!src/nodeTrajectories/positions/NodePositions.txt
 uv.lock
 src/*.*
+src/nodeTrajectories/Flows0
 **/__pycache__
 !src/*.py
 !src/phero_c.pyx

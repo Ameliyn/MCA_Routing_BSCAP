@@ -1,0 +1,550 @@
+RESULTS_FOLDER:
+- source: daisy_chain.yaml
+  raw: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/
+- substituted: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/
+  value: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/
+NETWORK_GRAPHS:
+- source: daisy_chain.yaml
+  raw: ${RESULTS_FOLDER}+"NetworkGraphs/"
+- substituted: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/+"NetworkGraphs/"
+  value: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/NetworkGraphs/
+PHEROMONE_GRAPHS:
+- source: daisy_chain.yaml
+  raw: ${RESULTS_FOLDER}+"PheromoneGraphs/"
+- substituted: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/+"PheromoneGraphs/"
+  value: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/PheromoneGraphs/
+TRAJECTORY_FOLDER:
+- source: daisy_chain.yaml
+  value: ./nodeTrajectories/
+DISTANCE_TRANSMISSON_POWER_FOLDER:
+- source: daisy_chain.yaml
+  raw: ${RESULTS_FOLDER}+"DynamicTransmissionPower/"
+- substituted: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/+"DynamicTransmissionPower/"
+  value: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/DynamicTransmissionPower/
+PRINT_LOGS:
+- source: daisy_chain.yaml
+  value: false
+PRINT_LOG_TOPOLOGY_METRICS:
+- source: daisy_chain.yaml
+  value: true
+SNAPSHOT_CODE:
+- source: daisy_chain.yaml
+  value: false
+ENABLE_MCS_SNR:
+- source: daisy_chain.yaml
+  value: false
+CHANNEL_AWARE_ROUTE_COMPUTATION:
+- source: daisy_chain.yaml
+  value: true
+ENABLE_PACKET_REINSERTION:
+- source: daisy_chain.yaml
+  value: false
+MOBILE_SCENARIO:
+- source: daisy_chain.yaml
+  value: false
+STATIC_TOPOLOGY_PATH:
+- source: daisy_chain.yaml
+  raw: ./nodeTrajectories/positions/daisy_chain_small.txt
+- substituted: ./nodeTrajectories/positions/daisy_chain_small.txt
+  value: ./nodeTrajectories/positions/daisy_chain_small.txt
+FORCED_ROUTES:
+- source: daisy_chain.yaml
+  raw: '[]'
+- substituted: '[]'
+  value: []
+FORCED_ROUTE_MCS:
+- source: daisy_chain.yaml
+  raw: '{}'
+- substituted: '{}'
+  value: {}
+EXT_INTERFERENCE:
+- source: daisy_chain.yaml
+  raw: '{}'
+- substituted: '{}'
+  value: {}
+ENABLE_Q_MNGMNT:
+- source: daisy_chain.yaml
+  value: true
+USE_FLOW_PRIORITY:
+- source: daisy_chain.yaml
+  value: false
+STRICT_ROUTE_SELECTION:
+- source: daisy_chain.yaml
+  value: true
+QUEUE_MANAGEMENT_PLUS:
+- source: daisy_chain.yaml
+  value: false
+CSMA_CA_BACKOFF:
+- source: daisy_chain.yaml
+  value: false
+PRIORITY_BASED_ROUTING:
+- source: daisy_chain.yaml
+  value: false
+ENABLE_POWER_CONTROL:
+- source: daisy_chain.yaml
+  value: false
+ENABLE_CONGESTION_DETECTION:
+- source: daisy_chain.yaml
+  value: false
+CONGESTION_BASED_MCS:
+- source: daisy_chain.yaml
+  value: false
+ROUTES_WITH_CONGESTION_BASED_MCS:
+- source: daisy_chain.yaml
+  raw: '[]'
+- substituted: '[]'
+  value: []
+CONGESTION_BASED_MCS_INCREMENT_THRESHOLD:
+- source: daisy_chain.yaml
+  value: 0.7
+CONGESTION_BASED_MCS_DECREMENT_THRESHOLD:
+- source: daisy_chain.yaml
+  value: 0.85
+CONGESTION_BASED_MCS_INCREMENT_STEP:
+- source: daisy_chain.yaml
+  value: 1
+CONGESTION_BASED_MCS_DECREMENT_STEP:
+- source: daisy_chain.yaml
+  value: 1
+TCP_ENABLED:
+- source: daisy_chain.yaml
+  value: false
+ENABLE_INDIVIDUAL_PKT_SINR:
+- source: daisy_chain.yaml
+  value: true
+MAX_MAC_PAYLOAD_LENGTH:
+- source: daisy_chain.yaml
+  raw: 2312*8
+- substituted: 2312*8
+  value: 18496
+BASE_PAYLOAD_LENGTH:
+- source: daisy_chain.yaml
+  raw: ${MAX_MAC_PAYLOAD_LENGTH}
+- substituted: '18496'
+  value: 18496
+USE_PACKET_AGGREGATION:
+- source: daisy_chain.yaml
+  value: true
+PACKET_LOSS_RATE:
+- source: daisy_chain.yaml
+  value: 0
+PAYLOAD_DATA_RATE:
+- source: daisy_chain.yaml
+  raw: '[4.0]'
+- substituted: '[4.0]'
+  value:
+  - 4.0
+TARGET_PKT_GENERATION_RATE:
+- source: daisy_chain.yaml
+  raw: '[round(61 * i) for i in ${PAYLOAD_DATA_RATE}]'
+- substituted: '[round(61 * i) for i in [4.0]]'
+  value:
+  - 244.0
+PACKET_INTER_ARRIVAL_TIME:
+- source: daisy_chain.yaml
+  raw: '[1e9 * (1.0/i) for i in ${TARGET_PKT_GENERATION_RATE}]'
+- substituted: '[1e9 * (1.0/i) for i in [244.0]]'
+  value:
+  - 4098360.655737705
+PACKET_TTL:
+- source: daisy_chain.yaml
+  raw: 3*1e9
+- substituted: 3*1e9
+  value: 3000000000.0
+MOBILITY_MODEL:
+- source: daisy_chain.yaml
+  value: TCPIPE_BSCAP_
+AREA_X:
+- source: daisy_chain.yaml
+  value: 12000
+AREA_Y:
+- source: daisy_chain.yaml
+  raw: ${AREA_X}
+- substituted: '12000'
+  value: 12000
+NUMBER_OF_BS:
+- source: daisy_chain.yaml
+  value: 1
+NUMBER_OF_NODES:
+- source: daisy_chain.yaml
+  raw: 50 + ${NUMBER_OF_BS}
+- substituted: 50 + 1
+  value: 51
+MAX_QUEUE_SIZE:
+- source: daisy_chain.yaml
+  raw: (max(${PAYLOAD_DATA_RATE}) * 1000000 * ${PACKET_TTL} * (len(${FORCED_ROUTES})
+    if ${FORCED_ROUTES} else len(${MOBILITY.TARGET_LOCATION})))/(${BASE_PAYLOAD_LENGTH}
+    * 8 * 1000)
+- substituted: (max([4.0]) * 1000000 * 3000000000.0 * (len([]) if [] else len([[5000,
+    6000]])))/(18496 * 8 * 1000)
+  value: 81098615.91695502
+NODE_SPEED:
+- source: daisy_chain.yaml
+  value: 40
+LLT_SAMPLE_FILE:
+- source: daisy_chain.yaml
+  raw: '"GM_RelavantSamples1.2km" + str(${NODE_SPEED}) + "m-s.dat"'
+- substituted: '"GM_RelavantSamples1.2km" + str(40) + "m-s.dat"'
+  value: GM_RelavantSamples1.2km40m-s.dat
+PKT_GENERATION_START_SEC:
+- source: daisy_chain.yaml
+  value: 2000
+PKT_GENERATION_END_SEC:
+- source: daisy_chain.yaml
+  raw: ${PKT_GENERATION_START_SEC} + 100
+- substituted: 2000 + 100
+  value: 2100
+PKT_GENERATION_START_TIME:
+- source: daisy_chain.yaml
+  raw: ${PKT_GENERATION_START_SEC} * 1e9
+- substituted: 2000 * 1e9
+  value: 2000000000000.0
+PKT_GENERATION_END_TIME:
+- source: daisy_chain.yaml
+  raw: ${PKT_GENERATION_END_SEC} * 1e9
+- substituted: 2100 * 1e9
+  value: 2100000000000.0
+SIM_TIME:
+- source: daisy_chain.yaml
+  raw: ${PKT_GENERATION_END_TIME} + (${PACKET_TTL} if (${PACKET_TTL} != simpy.core.Infinity)
+    else 0) + 1e9
+- substituted: 2100000000000.0 + (3000000000.0 if (3000000000.0 != simpy.core.Infinity)
+    else 0) + 1e9
+  value: 2104000000000.0
+PKT_FORWARDED_SUCCESSFULLY:
+- source: daisy_chain.yaml
+  value: 0
+PKT_DROPPED:
+- source: daisy_chain.yaml
+  value: 1
+DROP_REASON_OVERFLOW:
+- source: daisy_chain.yaml
+  value: Overflow
+DROP_REASON_EXPIRY:
+- source: daisy_chain.yaml
+  value: Expiry
+DROP_REASON_Q_MNGMNT:
+- source: daisy_chain.yaml
+  value: QueueManagement
+DROP_REASON_RETRYLIMIT:
+- source: daisy_chain.yaml
+  value: RetryLimit
+DROP_REASON_NO_ROUTE:
+- source: daisy_chain.yaml
+  value: NoRoute
+WAITING_FOR_TX:
+- source: daisy_chain.yaml
+  value: Still in Queue
+MCS_SNR_TABLE:
+- source: daisy_chain.yaml
+  raw: "{\n  0:{'Modulation':'BPSK','Coding':1/2,'MinSNR(dB)':2,'MinSNR':1.5849,'DataRate':11},\n\
+    \  1:{'Modulation':'QPSK','Coding':1/2,'MinSNR(dB)':5,'MinSNR':3.1623,'DataRate':22},\n\
+    \  2:{'Modulation':'QPSK','Coding':3/4,'MinSNR(dB)':9,'MinSNR':7.9433,'DataRate':33},\n\
+    \  3:{'Modulation':'16-QAM','Coding':1/2,'MinSNR(dB)':11,'MinSNR':12.5893,'DataRate':44}\n\
+    }\n"
+- substituted: "{\n  0:{'Modulation':'BPSK','Coding':1/2,'MinSNR(dB)':2,'MinSNR':1.5849,'DataRate':11},\n\
+    \  1:{'Modulation':'QPSK','Coding':1/2,'MinSNR(dB)':5,'MinSNR':3.1623,'DataRate':22},\n\
+    \  2:{'Modulation':'QPSK','Coding':3/4,'MinSNR(dB)':9,'MinSNR':7.9433,'DataRate':33},\n\
+    \  3:{'Modulation':'16-QAM','Coding':1/2,'MinSNR(dB)':11,'MinSNR':12.5893,'DataRate':44}\n\
+    }\n"
+  value:
+    0:
+      Modulation: BPSK
+      Coding: 0.5
+      MinSNR(dB): 2
+      MinSNR: 1.5849
+      DataRate: 11
+    1:
+      Modulation: QPSK
+      Coding: 0.5
+      MinSNR(dB): 5
+      MinSNR: 3.1623
+      DataRate: 22
+    2:
+      Modulation: QPSK
+      Coding: 0.75
+      MinSNR(dB): 9
+      MinSNR: 7.9433
+      DataRate: 33
+    3:
+      Modulation: 16-QAM
+      Coding: 0.5
+      MinSNR(dB): 11
+      MinSNR: 12.5893
+      DataRate: 44
+DEFAULT_DATA_MCS_INDEX:
+- source: daisy_chain.yaml
+  raw: '0'
+- substituted: '0'
+  value: 0
+MAX_DATA_MCS_INDEX:
+- source: daisy_chain.yaml
+  raw: min(1, len(${MCS_SNR_TABLE})-1)
+- substituted: 'min(1, len({0: {''Modulation'': ''BPSK'', ''Coding'': 0.5, ''MinSNR(dB)'':
+    2, ''MinSNR'': 1.5849, ''DataRate'': 11}, 1: {''Modulation'': ''QPSK'', ''Coding'':
+    0.5, ''MinSNR(dB)'': 5, ''MinSNR'': 3.1623, ''DataRate'': 22}, 2: {''Modulation'':
+    ''QPSK'', ''Coding'': 0.75, ''MinSNR(dB)'': 9, ''MinSNR'': 7.9433, ''DataRate'':
+    33}, 3: {''Modulation'': ''16-QAM'', ''Coding'': 0.5, ''MinSNR(dB)'': 11, ''MinSNR'':
+    12.5893, ''DataRate'': 44}})-1)'
+  value: 1
+CONTROL_MCS_INDEX:
+- source: daisy_chain.yaml
+  value: 0
+MIN_MIN_REQUIRED_SINR:
+- source: daisy_chain.yaml
+  raw: ${MCS_SNR_TABLE}[${CONTROL_MCS_INDEX}]["MinSNR"]
+- substituted: '{0: {''Modulation'': ''BPSK'', ''Coding'': 0.5, ''MinSNR(dB)'': 2,
+    ''MinSNR'': 1.5849, ''DataRate'': 11}, 1: {''Modulation'': ''QPSK'', ''Coding'':
+    0.5, ''MinSNR(dB)'': 5, ''MinSNR'': 3.1623, ''DataRate'': 22}, 2: {''Modulation'':
+    ''QPSK'', ''Coding'': 0.75, ''MinSNR(dB)'': 9, ''MinSNR'': 7.9433, ''DataRate'':
+    33}, 3: {''Modulation'': ''16-QAM'', ''Coding'': 0.5, ''MinSNR(dB)'': 11, ''MinSNR'':
+    12.5893, ''DataRate'': 44}}[0]["MinSNR"]'
+  value: 1.5849
+MAX_MIN_REQUIRED_SINR:
+- source: daisy_chain.yaml
+  raw: ${MCS_SNR_TABLE}[len(${MCS_SNR_TABLE})-1]["MinSNR"]
+- substituted: '{0: {''Modulation'': ''BPSK'', ''Coding'': 0.5, ''MinSNR(dB)'': 2,
+    ''MinSNR'': 1.5849, ''DataRate'': 11}, 1: {''Modulation'': ''QPSK'', ''Coding'':
+    0.5, ''MinSNR(dB)'': 5, ''MinSNR'': 3.1623, ''DataRate'': 22}, 2: {''Modulation'':
+    ''QPSK'', ''Coding'': 0.75, ''MinSNR(dB)'': 9, ''MinSNR'': 7.9433, ''DataRate'':
+    33}, 3: {''Modulation'': ''16-QAM'', ''Coding'': 0.5, ''MinSNR(dB)'': 11, ''MinSNR'':
+    12.5893, ''DataRate'': 44}}[len({0: {''Modulation'': ''BPSK'', ''Coding'': 0.5,
+    ''MinSNR(dB)'': 2, ''MinSNR'': 1.5849, ''DataRate'': 11}, 1: {''Modulation'':
+    ''QPSK'', ''Coding'': 0.5, ''MinSNR(dB)'': 5, ''MinSNR'': 3.1623, ''DataRate'':
+    22}, 2: {''Modulation'': ''QPSK'', ''Coding'': 0.75, ''MinSNR(dB)'': 9, ''MinSNR'':
+    7.9433, ''DataRate'': 33}, 3: {''Modulation'': ''16-QAM'', ''Coding'': 0.5, ''MinSNR(dB)'':
+    11, ''MinSNR'': 12.5893, ''DataRate'': 44}})-1]["MinSNR"]'
+  value: 12.5893
+FREQUENCY:
+- source: daisy_chain.yaml
+  raw: 2.4 * 1e9
+- substituted: 2.4 * 1e9
+  value: 2400000000.0
+WAVELENGTH:
+- source: daisy_chain.yaml
+  raw: c/${FREQUENCY}
+- substituted: c/2400000000.0
+  value: 0.12491352416666666
+RADIO_SWITCHING_TIME:
+- source: daisy_chain.yaml
+  value: 100
+STEP_SIZE:
+- source: daisy_chain.yaml
+  value: 10
+RADIO_SENSITIVITY:
+- source: daisy_chain.yaml
+  raw: ${NOISE_FLOOR} * 1.6
+- substituted: 3.16e-13 * 1.6
+  value: 5.056000000000001e-13
+NOISE_FLOOR:
+- source: daisy_chain.yaml
+  raw: 31.6e-14 * 1
+- substituted: 31.6e-14 * 1
+  value: 3.16e-13
+SLOT_DURATION:
+- source: daisy_chain.yaml
+  value: 20000
+SIFS_DURATION:
+- source: daisy_chain.yaml
+  value: 10000
+DIFS_DURATION:
+- source: daisy_chain.yaml
+  raw: ${SIFS_DURATION} + (2 * ${SLOT_DURATION})
+- substituted: 10000 + (2 * 20000)
+  value: 50000
+RTS_LENGTH:
+- source: daisy_chain.yaml
+  raw: 20*8 + 4*8
+- substituted: 20*8 + 4*8
+  value: 192
+CTS_LENGTH:
+- source: daisy_chain.yaml
+  raw: 14*8 + 4*8
+- substituted: 14*8 + 4*8
+  value: 144
+MAC_HEADER_LENGTH:
+- source: daisy_chain.yaml
+  raw: 30*8 + 1*8
+- substituted: 30*8 + 1*8
+  value: 248
+PHY_HEADER_LENGTH:
+- source: daisy_chain.yaml
+  value: 128
+ACK_LENGTH:
+- source: daisy_chain.yaml
+  raw: 30*8 + 1*8
+- substituted: 30*8 + 1*8
+  value: 248
+RTS_THRESHOLD:
+- source: daisy_chain.yaml
+  raw: 255*8
+- substituted: 255*8
+  value: 2040
+USE_RTS_CTS:
+- source: daisy_chain.yaml
+  raw: ${MAX_MAC_PAYLOAD_LENGTH} > ${RTS_THRESHOLD}
+- substituted: 18496 > 2040
+  value: true
+CW_MIN:
+- source: daisy_chain.yaml
+  value: 16
+CW_MAX:
+- source: daisy_chain.yaml
+  value: 1024
+MAX_RETRY_LIMIT:
+- source: daisy_chain.yaml
+  value: 7
+LOCATION_UPDATE_INTERVAL:
+- source: daisy_chain.yaml
+  raw: 1 * 1e9
+- substituted: 1 * 1e9
+  value: 1000000000.0
+QUEUE_UPDATE_INTERVAL:
+- source: daisy_chain.yaml
+  raw: 0.2 * 1e9
+- substituted: 0.2 * 1e9
+  value: 200000000.0
+DELTA:
+- source: daisy_chain.yaml
+  value: 1000000000
+TH1:
+- source: daisy_chain.yaml
+  value: 1.5
+TH2:
+- source: daisy_chain.yaml
+  value: 1.1
+ALPHA:
+- source: daisy_chain.yaml
+  value: 0.3
+W1:
+- source: daisy_chain.yaml
+  value: 0.5
+W2:
+- source: daisy_chain.yaml
+  value: 0.5
+HC_THRESHOLD:
+- source: daisy_chain.yaml
+  value: 2
+SUR_THRESHOLD:
+- source: daisy_chain.yaml
+  value: 0.7
+FIRST_N_PKTS:
+- source: daisy_chain.yaml
+  value: 50
+NODE_LOCATION_WAYPOINT_LOG_FLAG:
+- source: daisy_chain.yaml
+  value: true
+MOBILITY.TC_PIPE_mobility_ON:
+- source: daisy_chain.yaml
+  raw: ${MOBILITY_MODEL} == "TCPIPE_BSCAP_"
+- substituted: TCPIPE_BSCAP_ == "TCPIPE_BSCAP_"
+  value: true
+MOBILITY.NODE_FAILURE_PERCENTAGE:
+- source: daisy_chain.yaml
+  value: 0
+MOBILITY.MAX_INITIAL_ENERGY:
+- source: daisy_chain.yaml
+  value: 360
+MOBILITY.NUM_FAILURES:
+- source: daisy_chain.yaml
+  raw: int((${NUMBER_OF_NODES} - 1) * (${MOBILITY.NODE_FAILURE_PERCENTAGE} / 100))
+- substituted: int((51 - 1) * (0 / 100))
+  value: 0
+MOBILITY.NUM_ACTIVE:
+- source: daisy_chain.yaml
+  raw: (${NUMBER_OF_NODES} - 1) - ${MOBILITY.NUM_FAILURES}
+- substituted: (51 - 1) - 0
+  value: 50
+MOBILITY.ENERGY_NODE_FAILURE_VALUE:
+- source: daisy_chain.yaml
+  value: 0
+MOBILITY.ENERGY_THRESHOLD:
+- source: daisy_chain.yaml
+  raw: ${MOBILITY.ENERGY_NODE_FAILURE_VALUE} + 10
+- substituted: 0 + 10
+  value: 10
+MOBILITY.ENERGY_RECHARGE_LEVEL:
+- source: daisy_chain.yaml
+  raw: ${MOBILITY.ENERGY_NODE_FAILURE_VALUE} - 10
+- substituted: 0 - 10
+  value: -10
+MOBILITY.MAX_ENERGY_DEPLETION_RATE:
+- source: daisy_chain.yaml
+  value: 0.1
+MOBILITY.ENERGY_DEPLETION_RATE:
+- source: daisy_chain.yaml
+  raw: np.full(${NUMBER_OF_NODES} - ${NUMBER_OF_BS}, ${MOBILITY.MAX_ENERGY_DEPLETION_RATE})
+- substituted: np.full(51 - 1, 0.1)
+  value:
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+MOBILITY.ROUTING_COST_TYPE:
+- source: daisy_chain.yaml
+  value: 1
+MOBILITY.TARGET_LOCATION:
+- source: daisy_chain.yaml
+  raw: '[[5000, 6000]]'
+- substituted: '[[5000, 6000]]'
+  value:
+  - - 5000
+    - 6000
+MOBILITY.BS_SCHEME:
+- source: daisy_chain.yaml
+  raw: '[[${AREA_X}-1000, ${AREA_Y}/2]]'
+- substituted: '[[12000-1000, 12000/2]]'
+  value:
+  - - 11000
+    - 6000.0
+MAXIMUM_ROUTING_RANGE:
+- source: daisy_chain.yaml
+  raw: '600'
+- substituted: '600'
+  value: 600
