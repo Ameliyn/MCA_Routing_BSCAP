@@ -1,0 +1,6 @@
+File Path,Run No,Packets Generated,Packets Received,PDR,Avg Delay,#Retransmissions,#Forwards,Avg Route Length,%Route Uptime,%HQ Route Uptime,Route Switches,Packet Drop (Expiry),Packet Drop (Queue Management),Packet Drop (Retry),Packet Drop (Overflow),Packet Drop (No Route),Packet Reinserted (TCP),Flow_ID
+C:\Users\Ameliyn\MCA_Routing_BSCAP\Results_Multi_N100\daisy_chain_small_500_2-0_0\Flow_Node0-Node5.csv,1,12200,12200,1.0,0.00806083549180328,0,48800,4.0,1.0,1.0,0,0,0,0,0,0,0,Flow_Node0-Node5
+Mean,,12200.0,12200.0,1.0,0.00806083549180328,0.0,48800.0,4.0,1.0,1.0,0.0,,,,,,,
+Median,,12200.0,12200.0,1.0,0.00806083549180328,0.0,48800.0,4.0,1.0,1.0,0.0,,,,,,,
+95% CI Lower,,,,,,,,,,,,,,,,,,
+95% CI Upper,,,,,,,,,,,,,,,,,,

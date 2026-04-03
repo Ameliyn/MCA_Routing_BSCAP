@@ -1,26 +1,26 @@
 RESULTS_FOLDER:
 - source: daisy_chain.yaml
-  raw: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/
-- substituted: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/
-  value: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/
+  raw: ./../Results_Multi_N100/daisy_chain_medium_1000_8-0_1/
+- substituted: ./../Results_Multi_N100/daisy_chain_medium_1000_8-0_1/
+  value: ./../Results_Multi_N100/daisy_chain_medium_1000_8-0_1/
 NETWORK_GRAPHS:
 - source: daisy_chain.yaml
   raw: ${RESULTS_FOLDER}+"NetworkGraphs/"
-- substituted: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/+"NetworkGraphs/"
-  value: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/NetworkGraphs/
+- substituted: ./../Results_Multi_N100/daisy_chain_medium_1000_8-0_1/+"NetworkGraphs/"
+  value: ./../Results_Multi_N100/daisy_chain_medium_1000_8-0_1/NetworkGraphs/
 PHEROMONE_GRAPHS:
 - source: daisy_chain.yaml
   raw: ${RESULTS_FOLDER}+"PheromoneGraphs/"
-- substituted: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/+"PheromoneGraphs/"
-  value: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/PheromoneGraphs/
+- substituted: ./../Results_Multi_N100/daisy_chain_medium_1000_8-0_1/+"PheromoneGraphs/"
+  value: ./../Results_Multi_N100/daisy_chain_medium_1000_8-0_1/PheromoneGraphs/
 TRAJECTORY_FOLDER:
 - source: daisy_chain.yaml
   value: ./nodeTrajectories/
 DISTANCE_TRANSMISSON_POWER_FOLDER:
 - source: daisy_chain.yaml
   raw: ${RESULTS_FOLDER}+"DynamicTransmissionPower/"
-- substituted: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/+"DynamicTransmissionPower/"
-  value: ./../Results_Multi_N100/daisy_chain_small_500_4-0_0/DynamicTransmissionPower/
+- substituted: ./../Results_Multi_N100/daisy_chain_medium_1000_8-0_1/+"DynamicTransmissionPower/"
+  value: ./../Results_Multi_N100/daisy_chain_medium_1000_8-0_1/DynamicTransmissionPower/
 PRINT_LOGS:
 - source: daisy_chain.yaml
   value: false
@@ -44,9 +44,9 @@ MOBILE_SCENARIO:
   value: false
 STATIC_TOPOLOGY_PATH:
 - source: daisy_chain.yaml
-  raw: ./nodeTrajectories/positions/daisy_chain_small.txt
-- substituted: ./nodeTrajectories/positions/daisy_chain_small.txt
-  value: ./nodeTrajectories/positions/daisy_chain_small.txt
+  raw: ./nodeTrajectories/positions/daisy_chain_medium.txt
+- substituted: ./nodeTrajectories/positions/daisy_chain_medium.txt
+  value: ./nodeTrajectories/positions/daisy_chain_medium.txt
 FORCED_ROUTES:
 - source: daisy_chain.yaml
   raw: '[]'
@@ -130,22 +130,22 @@ PACKET_LOSS_RATE:
   value: 0
 PAYLOAD_DATA_RATE:
 - source: daisy_chain.yaml
-  raw: '[4.0]'
-- substituted: '[4.0]'
+  raw: '[8.0]'
+- substituted: '[8.0]'
   value:
-  - 4.0
+  - 8.0
 TARGET_PKT_GENERATION_RATE:
 - source: daisy_chain.yaml
   raw: '[round(61 * i) for i in ${PAYLOAD_DATA_RATE}]'
-- substituted: '[round(61 * i) for i in [4.0]]'
+- substituted: '[round(61 * i) for i in [8.0]]'
   value:
-  - 244.0
+  - 488.0
 PACKET_INTER_ARRIVAL_TIME:
 - source: daisy_chain.yaml
   raw: '[1e9 * (1.0/i) for i in ${TARGET_PKT_GENERATION_RATE}]'
-- substituted: '[1e9 * (1.0/i) for i in [244.0]]'
+- substituted: '[1e9 * (1.0/i) for i in [488.0]]'
   value:
-  - 4098360.655737705
+  - 2049180.3278688525
 PACKET_TTL:
 - source: daisy_chain.yaml
   raw: 3*1e9
@@ -175,9 +175,9 @@ MAX_QUEUE_SIZE:
   raw: (max(${PAYLOAD_DATA_RATE}) * 1000000 * ${PACKET_TTL} * (len(${FORCED_ROUTES})
     if ${FORCED_ROUTES} else len(${MOBILITY.TARGET_LOCATION})))/(${BASE_PAYLOAD_LENGTH}
     * 8 * 1000)
-- substituted: (max([4.0]) * 1000000 * 3000000000.0 * (len([]) if [] else len([[5000,
+- substituted: (max([8.0]) * 1000000 * 3000000000.0 * (len([]) if [] else len([[4000,
     6000]])))/(18496 * 8 * 1000)
-  value: 81098615.91695502
+  value: 162197231.83391005
 NODE_SPEED:
 - source: daisy_chain.yaml
   value: 40
@@ -274,9 +274,9 @@ MCS_SNR_TABLE:
       DataRate: 44
 DEFAULT_DATA_MCS_INDEX:
 - source: daisy_chain.yaml
-  raw: '0'
-- substituted: '0'
-  value: 0
+  raw: '1'
+- substituted: '1'
+  value: 1
 MAX_DATA_MCS_INDEX:
 - source: daisy_chain.yaml
   raw: min(1, len(${MCS_SNR_TABLE})-1)
@@ -531,10 +531,10 @@ MOBILITY.ROUTING_COST_TYPE:
   value: 1
 MOBILITY.TARGET_LOCATION:
 - source: daisy_chain.yaml
-  raw: '[[5000, 6000]]'
-- substituted: '[[5000, 6000]]'
+  raw: '[[4000, 6000]]'
+- substituted: '[[4000, 6000]]'
   value:
-  - - 5000
+  - - 4000
     - 6000
 MOBILITY.BS_SCHEME:
 - source: daisy_chain.yaml
@@ -545,6 +545,6 @@ MOBILITY.BS_SCHEME:
     - 6000.0
 MAXIMUM_ROUTING_RANGE:
 - source: daisy_chain.yaml
-  raw: '600'
-- substituted: '600'
-  value: 600
+  raw: '1100'
+- substituted: '1100'
+  value: 1100
