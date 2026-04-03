@@ -10,28 +10,33 @@ def subprocess(seed: int, default_args: str, override_string: str, results_folde
 if __name__ == '__main__':
 	topology_files = ["./nodeTrajectories/positions/daisy_chain_small.txt", "./nodeTrajectories/positions/daisy_chain_medium.txt", "./nodeTrajectories/positions/daisy_chain_large.txt"]
 	
-	# Set target locations as the first node in the topology (because the last is the base station)
+	# Set target locations as the first N nodes in the topology (because the last is the base station)
+	num_targets = 1
 	targets = []
 	for topo in topology_files:
 		with open(f'{topo}', 'r') as f:
-			targets.append(f'[{f.readline().strip()}]')
+			for i in range(num_targets):
+				targets.append(f'[{f.readline().strip()}]')
 		
-	max_routing_ranges = [600, 1200, 2400] #Small medium large
+	node_distances = [500, 1000, 2000] #Small medium large
 	flow_data_rates = [1.5, 2.0, 4.0, 8.0]
 	MCS_types = [1,0]
+	forced_routes = []
+	num_base_stations = 1
+	forced_mcs = {}
 		
 	# Load types
 
 	total_count = len(topology_files) * len(flow_data_rates) * len(MCS_types)
 	count = 1
 	overrides = {}
-	for topology, target, routing_range in zip(topology_files, targets, max_routing_ranges):
+	for topology, target, node_distance in zip(topology_files, targets, node_distances):
 		for data_rate in flow_data_rates:
 			seeds = [random.randint(1,1000), random.randint(1,1000)]
 			override_strings = []
 			results_folders = []
 			for mcs in MCS_types:
-				output_folder = f'./../Results_Multi_N100/{topology.split("/")[3].split(".")[0]}_{routing_range}_{str(data_rate).replace(".","-")}_{mcs}/'
+				output_folder = f'./../Results_Multi_N100/{topology.split("/")[3].split(".")[0]}_{node_distance}_{str(data_rate).replace(".","-")}_{mcs}/'
 				print(f"Simulating {count}/{total_count}: {output_folder}")
 				count += 1
 
@@ -39,9 +44,13 @@ if __name__ == '__main__':
 				overrides['RESULTS_FOLDER'] = f'{output_folder}'
 				overrides['STATIC_TOPOLOGY_PATH'] = f'{topology}'
 				overrides['MOBILITY.TARGET_LOCATION'] = f'[{target}]'
-				overrides['MAXIMUM_ROUTING_RANGE'] = str(routing_range)
+				overrides['MAXIMUM_ROUTING_RANGE'] = str(node_distance+100)
 				overrides['PAYLOAD_DATA_RATE'] = f'[{data_rate}]'
 				overrides['DEFAULT_DATA_MCS_INDEX'] =  f'{mcs}'
+				if num_base_stations != 1:
+					overrides['NUMBER_OF_BS'] =  f'{num_base_stations}'
+				if len(forced_routes) > 0:
+					overrides['FORCED_ROUTES'] =  f'{forced_routes}'
 
 				default_args = f'--config .\\config\\cfg\\daisy_chain.yaml --schema .\\config\\schemas\\daisy_schema.json --no-input'
 				override_string = ''
