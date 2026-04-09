@@ -685,10 +685,10 @@ def updateNetworkTopology(env: simpy.Environment, allNodes: list['Node']):
     for edge in topology.edges():
         node1, node2 = edge
         if node1 == parameters.Gateway_Node_ID or node2 == parameters.Gateway_Node_ID:
-            LLT_STATS[edge] = parameters.SIM_TIME
+            LLT_STATS[edge] = (parameters.SIM_TIME/1e9)
         # LLT_STATS[edge] = FindLLT (node1,node2,curr_sim_time) if parameters.MOBILE_SCENARIO else parameters.SIM_TIME
         else:
-            LLT_STATS[edge] = FindLLT_shreyas (node1,node2, node_max_tx_ranges, int( (parameters.PACKET_TTL + parameters.DELTA)/1e9) ) if parameters.MOBILE_SCENARIO else parameters.SIM_TIME #SHREY*
+            LLT_STATS[edge] = FindLLT_shreyas (node1,node2, node_max_tx_ranges, int( (parameters.PACKET_TTL + parameters.DELTA)/1e9) ) if parameters.MOBILE_SCENARIO else (parameters.SIM_TIME/1e9) #SHREY*
     # print("At time:",curr_sim_time,"Link Lifetime:",LLT_STATS)
     
     route_details = parameters.Route_Details.copy()

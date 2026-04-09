@@ -597,8 +597,8 @@ class Node(object):
         with self.lock:
             if not self.q.empty():
                 HOL_pkt = self.q.queue[0]
-                pktTTE = parameters.PACKET_TTL - self.getPktAge(HOL_pkt[3],curr_time); #print("HOL pkt:",HOL_pkt,"TTE:",pktTTE)
+                pktTTE = (parameters.PACKET_TTL/1e9) - self.getPktAge(HOL_pkt[3],curr_time); #print("HOL pkt:",HOL_pkt,"TTE:",pktTTE)
             else:
                 # If there is no packet in the queue, use max time allowed for a packet to be in the queue.
-                pktTTE = parameters.PACKET_TTL
+                pktTTE = parameters.PACKET_TTL/1e9
         return pktTTE
