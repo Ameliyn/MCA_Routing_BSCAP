@@ -17,16 +17,7 @@ if __name__ == '__main__':
 	
 	# Set target locations as the first N nodes in the topology (because the last is the base station)
 	num_targets = 2
-	targets = []
-	for topo in topology_files:
-		with open(f'{topo}', 'r') as f:
-			temp = []
-			for i in range(num_targets):
-				line = f.readline().strip()
-				while "+" in line:
-					line = f.readline().strip()
-				temp.append(f'[{line}]')
-			targets.append(temp)
+	targets = [[[6000, 4500],[4500, 6000]], [[6000, 3000],[3000, 6000]], [[6000, 0],[0, 6000]]]
 
 		
 	node_distances = [500, 1000, 2000] #Small medium large

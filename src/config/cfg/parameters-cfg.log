@@ -200,7 +200,7 @@ MAX_QUEUE_SIZE:
     if ${FORCED_ROUTES} else len(${MOBILITY.TARGET_LOCATION})))/(${BASE_PAYLOAD_LENGTH}
     * 8 * 1000)
 - substituted: (max([2.0]) * 1000000 * 3000000000.0 * (len([[0, 12], [6, 11]]) if
-    [[0, 12], [6, 11]] else len(['[6000, 4500]', '[4500, 6000]'])))/(18496 * 8 * 1000)
+    [[0, 12], [6, 11]] else len([[6000, 4500], [4500, 6000]])))/(18496 * 8 * 1000)
   value: 81098615.91695502
 NODE_SPEED:
 - source: daisy_chain.yaml
@@ -553,11 +553,13 @@ MOBILITY.ROUTING_COST_TYPE:
   value: 1
 MOBILITY.TARGET_LOCATION:
 - source: daisy_chain.yaml
-  raw: '[''[6000, 4500]'', ''[4500, 6000]'']'
-- substituted: '[''[6000, 4500]'', ''[4500, 6000]'']'
+  raw: '[[6000, 4500], [4500, 6000]]'
+- substituted: '[[6000, 4500], [4500, 6000]]'
   value:
-  - '[6000, 4500]'
-  - '[4500, 6000]'
+  - - 6000
+    - 4500
+  - - 4500
+    - 6000
 MOBILITY.BS_SCHEME:
 - source: daisy_chain.yaml
   raw: '[[6000, 7500], [7500, 6000]]'
