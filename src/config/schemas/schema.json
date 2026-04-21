@@ -1023,29 +1023,6 @@
             "eval": "${AREA_X}"
           }
         },
-        "MAXIMUM_ROUTING_RANGE": {
-          "anyOf": [
-            {
-              "type": "number",
-              "type-hint": "int"
-            },
-            {
-              "type": "object",
-              "properties": {
-                "eval": {
-                  "type": "string",
-                  "title": "eval"
-                }
-              },
-              "required": [
-                "eval"
-              ],
-              "additionalProperties": false
-            }
-          ],
-          "description": "in meters. Node Range.",
-          "default": 1200
-        },
         "NUMBER_OF_BS": {
           "anyOf": [
             {

@@ -22,6 +22,7 @@ if __name__ == '__main__':
 	flow_data_rates = [1.5, 2.0, 4.0, 8.0]
 	MCS_types = [1,0]
 	forced_routes = []
+	forced_mcs: dict[int,dict[int,int]] = dict()
 	num_base_stations = 1
 	forced_mcs = {}
 		
