@@ -13,7 +13,7 @@ if __name__ == '__main__':
 		"./nodeTrajectories/positions/crossFlow_7_Small.txt", 
 		"./nodeTrajectories/positions/crossFlow_7_Medium.txt", 
 		"./nodeTrajectories/positions/crossFlow_7_Large.txt"]
-	results_folder = './../Results_Multi_N100/'
+	results_folder = './../Results_Cross/'
 	
 	# Set target locations as the first N nodes in the topology (because the last is the base station)
 	num_targets = 2
@@ -89,6 +89,12 @@ if __name__ == '__main__':
 				overrides['PAYLOAD_DATA_RATE'] = f'[{data_rate}]'
 				if num_base_stations != 1:
 					overrides['NUMBER_OF_BS'] =  f'{num_base_stations}'
+					if node_distance == 500:
+						overrides['MOBILITY.BS_SCHEME'] = [[6000, 7500],[7500, 6000]]
+					elif node_distance == 1000:
+						overrides['MOBILITY.BS_SCHEME'] = [[6000, 9000],[9000, 6000]]
+					elif node_distance == 2000:
+						overrides['MOBILITY.BS_SCHEME'] = [[6000, 12000],[12000, 6000]]
 				if len(forced_routes) > 0:
 					overrides['FORCED_ROUTES'] =  f'{forced_routes}'
 				overrides['FORCED_ROUTE_MCS'] = mcs_dict
@@ -103,10 +109,11 @@ if __name__ == '__main__':
 				count += 1
 				
 	max_count = len(execution_commands)
+	first_command = [execution_commands[0]]
 	with ProcessPoolExecutor(max_workers=4) as executor:
 		futures = [
 			executor.submit(subprocess, comm, index, max_count)
-			for comm,index in execution_commands
+			for comm,index in first_command
 		]
 		for f in as_completed(futures):
 			print(f.result())

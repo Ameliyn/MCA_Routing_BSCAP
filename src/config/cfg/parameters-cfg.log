@@ -1,30 +1,28 @@
 RESULTS_FOLDER:
 - source: daisy_chain.yaml
-  raw: ./../Results/
-- substituted: ./../Results/
-  value: ./../Results/
+  raw: ./../Results_Cross/crossFlow_7_Small_500_2-0_hotspot_1/
+- substituted: ./../Results_Cross/crossFlow_7_Small_500_2-0_hotspot_1/
+  value: ./../Results_Cross/crossFlow_7_Small_500_2-0_hotspot_1/
 NETWORK_GRAPHS:
 - source: daisy_chain.yaml
   raw: ${RESULTS_FOLDER}+"NetworkGraphs/"
-- substituted: ./../Results/+"NetworkGraphs/"
-  value: ./../Results/NetworkGraphs/
+- substituted: ./../Results_Cross/crossFlow_7_Small_500_2-0_hotspot_1/+"NetworkGraphs/"
+  value: ./../Results_Cross/crossFlow_7_Small_500_2-0_hotspot_1/NetworkGraphs/
 PHEROMONE_GRAPHS:
 - source: daisy_chain.yaml
   raw: ${RESULTS_FOLDER}+"PheromoneGraphs/"
-- substituted: ./../Results/+"PheromoneGraphs/"
-  value: ./../Results/PheromoneGraphs/
+- substituted: ./../Results_Cross/crossFlow_7_Small_500_2-0_hotspot_1/+"PheromoneGraphs/"
+  value: ./../Results_Cross/crossFlow_7_Small_500_2-0_hotspot_1/PheromoneGraphs/
 TRAJECTORY_FOLDER:
 - source: daisy_chain.yaml
   value: ./nodeTrajectories/
 DISTANCE_TRANSMISSON_POWER_FOLDER:
 - source: daisy_chain.yaml
   raw: ${RESULTS_FOLDER}+"DynamicTransmissionPower/"
-- substituted: ./../Results/+"DynamicTransmissionPower/"
-  value: ./../Results/DynamicTransmissionPower/
+- substituted: ./../Results_Cross/crossFlow_7_Small_500_2-0_hotspot_1/+"DynamicTransmissionPower/"
+  value: ./../Results_Cross/crossFlow_7_Small_500_2-0_hotspot_1/DynamicTransmissionPower/
 PRINT_LOGS:
 - source: daisy_chain.yaml
-  raw: 'False'
-- substituted: 'False'
   value: false
 PRINT_LOG_TOPOLOGY_METRICS:
 - source: daisy_chain.yaml
@@ -43,24 +41,44 @@ ENABLE_PACKET_REINSERTION:
   value: false
 MOBILE_SCENARIO:
 - source: daisy_chain.yaml
-  raw: 'False'
-- substituted: 'False'
   value: false
 STATIC_TOPOLOGY_PATH:
 - source: daisy_chain.yaml
-  raw: ${TRAJECTORY_FOLDER}+"positions/crossFlow_7_Small.txt"
-- substituted: ./nodeTrajectories/+"positions/crossFlow_7_Small.txt"
+  raw: ./nodeTrajectories/positions/crossFlow_7_Small.txt
+- substituted: ./nodeTrajectories/positions/crossFlow_7_Small.txt
   value: ./nodeTrajectories/positions/crossFlow_7_Small.txt
 FORCED_ROUTES:
 - source: daisy_chain.yaml
-  raw: '[]'
-- substituted: '[]'
-  value: []
+  raw: '[[0, 12], [6, 11]]'
+- substituted: '[[0, 12], [6, 11]]'
+  value:
+  - - 0
+    - 12
+  - - 6
+    - 11
 FORCED_ROUTE_MCS:
 - source: daisy_chain.yaml
-  raw: '{}'
-- substituted: '{}'
-  value: {}
+  raw: '{0: {0: 0, 1: 0, 2: 0, 3: 1, 4: 0, 5: 0, 12: 0}, 1: {6: 0, 7: 0, 8: 0, 3:
+    1, 9: 0, 10: 0, 11: 0}}'
+- substituted: '{0: {0: 0, 1: 0, 2: 0, 3: 1, 4: 0, 5: 0, 12: 0}, 1: {6: 0, 7: 0, 8:
+    0, 3: 1, 9: 0, 10: 0, 11: 0}}'
+  value:
+    0:
+      0: 0
+      1: 0
+      2: 0
+      3: 1
+      4: 0
+      5: 0
+      12: 0
+    1:
+      6: 0
+      7: 0
+      8: 0
+      3: 1
+      9: 0
+      10: 0
+      11: 0
 EXT_INTERFERENCE:
 - source: daisy_chain.yaml
   raw: '{}'
@@ -134,25 +152,22 @@ PACKET_LOSS_RATE:
   value: 0
 PAYLOAD_DATA_RATE:
 - source: daisy_chain.yaml
-  raw: '[1.5, 1.5]'
-- substituted: '[1.5, 1.5]'
+  raw: '[2.0]'
+- substituted: '[2.0]'
   value:
-  - 1.5
-  - 1.5
+  - 2.0
 TARGET_PKT_GENERATION_RATE:
 - source: daisy_chain.yaml
   raw: '[round(61 * i) for i in ${PAYLOAD_DATA_RATE}]'
-- substituted: '[round(61 * i) for i in [1.5, 1.5]]'
+- substituted: '[round(61 * i) for i in [2.0]]'
   value:
-  - 92.0
-  - 92.0
+  - 122.0
 PACKET_INTER_ARRIVAL_TIME:
 - source: daisy_chain.yaml
   raw: '[1e9 * (1.0/i) for i in ${TARGET_PKT_GENERATION_RATE}]'
-- substituted: '[1e9 * (1.0/i) for i in [92.0, 92.0]]'
+- substituted: '[1e9 * (1.0/i) for i in [122.0]]'
   value:
-  - 10869565.217391305
-  - 10869565.217391305
+  - 8196721.31147541
 PACKET_TTL:
 - source: daisy_chain.yaml
   raw: 3*1e9
@@ -163,28 +178,30 @@ MOBILITY_MODEL:
   value: TCPIPE_BSCAP_
 AREA_X:
 - source: daisy_chain.yaml
-  value: 14000
+  value: 12000
 AREA_Y:
 - source: daisy_chain.yaml
   raw: ${AREA_X}
-- substituted: '14000'
-  value: 14000
+- substituted: '12000'
+  value: 12000
 NUMBER_OF_BS:
 - source: daisy_chain.yaml
-  value: 1
+  raw: '2'
+- substituted: '2'
+  value: 2
 NUMBER_OF_NODES:
 - source: daisy_chain.yaml
   raw: 50 + ${NUMBER_OF_BS}
-- substituted: 50 + 1
-  value: 51
+- substituted: 50 + 2
+  value: 52
 MAX_QUEUE_SIZE:
 - source: daisy_chain.yaml
   raw: (max(${PAYLOAD_DATA_RATE}) * 1000000 * ${PACKET_TTL} * (len(${FORCED_ROUTES})
     if ${FORCED_ROUTES} else len(${MOBILITY.TARGET_LOCATION})))/(${BASE_PAYLOAD_LENGTH}
     * 8 * 1000)
-- substituted: (max([1.5, 1.5]) * 1000000 * 3000000000.0 * (len([]) if [] else len([[7000.0,
-    7000.0]])))/(18496 * 8 * 1000)
-  value: 30411980.96885813
+- substituted: (max([2.0]) * 1000000 * 3000000000.0 * (len([[0, 12], [6, 11]]) if
+    [[0, 12], [6, 11]] else len(['[6000, 4500]', '[4500, 6000]'])))/(18496 * 8 * 1000)
+  value: 81098615.91695502
 NODE_SPEED:
 - source: daisy_chain.yaml
   value: 40
@@ -195,31 +212,29 @@ LLT_SAMPLE_FILE:
   value: GM_RelavantSamples1.2km40m-s.dat
 PKT_GENERATION_START_SEC:
 - source: daisy_chain.yaml
-  raw: '2000.0'
-- substituted: '2000.0'
-  value: 2000.0
+  value: 2000
 PKT_GENERATION_END_SEC:
 - source: daisy_chain.yaml
-  raw: '2002.0'
-- substituted: '2002.0'
-  value: 2002.0
+  raw: ${PKT_GENERATION_START_SEC} + 100
+- substituted: 2000 + 100
+  value: 2100
 PKT_GENERATION_START_TIME:
 - source: daisy_chain.yaml
   raw: ${PKT_GENERATION_START_SEC} * 1e9
-- substituted: 2000.0 * 1e9
+- substituted: 2000 * 1e9
   value: 2000000000000.0
 PKT_GENERATION_END_TIME:
 - source: daisy_chain.yaml
   raw: ${PKT_GENERATION_END_SEC} * 1e9
-- substituted: 2002.0 * 1e9
-  value: 2002000000000.0
+- substituted: 2100 * 1e9
+  value: 2100000000000.0
 SIM_TIME:
 - source: daisy_chain.yaml
   raw: ${PKT_GENERATION_END_TIME} + (${PACKET_TTL} if (${PACKET_TTL} != simpy.core.Infinity)
     else 0) + 1e9
-- substituted: 2002000000000.0 + (3000000000.0 if (3000000000.0 != simpy.core.Infinity)
+- substituted: 2100000000000.0 + (3000000000.0 if (3000000000.0 != simpy.core.Infinity)
     else 0) + 1e9
-  value: 2006000000000.0
+  value: 2104000000000.0
 PKT_FORWARDED_SUCCESSFULLY:
 - source: daisy_chain.yaml
   value: 0
@@ -283,8 +298,6 @@ MCS_SNR_TABLE:
       DataRate: 44
 DEFAULT_DATA_MCS_INDEX:
 - source: daisy_chain.yaml
-  raw: '0'
-- substituted: '0'
   value: 0
 MAX_DATA_MCS_INDEX:
 - source: daisy_chain.yaml
@@ -457,13 +470,13 @@ MOBILITY.MAX_INITIAL_ENERGY:
 MOBILITY.NUM_FAILURES:
 - source: daisy_chain.yaml
   raw: int((${NUMBER_OF_NODES} - 1) * (${MOBILITY.NODE_FAILURE_PERCENTAGE} / 100))
-- substituted: int((51 - 1) * (0 / 100))
+- substituted: int((52 - 1) * (0 / 100))
   value: 0
 MOBILITY.NUM_ACTIVE:
 - source: daisy_chain.yaml
   raw: (${NUMBER_OF_NODES} - 1) - ${MOBILITY.NUM_FAILURES}
-- substituted: (51 - 1) - 0
-  value: 50
+- substituted: (52 - 1) - 0
+  value: 51
 MOBILITY.ENERGY_NODE_FAILURE_VALUE:
 - source: daisy_chain.yaml
   value: 0
@@ -483,7 +496,7 @@ MOBILITY.MAX_ENERGY_DEPLETION_RATE:
 MOBILITY.ENERGY_DEPLETION_RATE:
 - source: daisy_chain.yaml
   raw: np.full(${NUMBER_OF_NODES} - ${NUMBER_OF_BS}, ${MOBILITY.MAX_ENERGY_DEPLETION_RATE})
-- substituted: np.full(51 - 1, 0.1)
+- substituted: np.full(52 - 2, 0.1)
   value:
   - 0.1
   - 0.1
@@ -540,18 +553,22 @@ MOBILITY.ROUTING_COST_TYPE:
   value: 1
 MOBILITY.TARGET_LOCATION:
 - source: daisy_chain.yaml
-  raw: '[[${AREA_X}/2, ${AREA_Y}/2]]'
-- substituted: '[[14000/2, 14000/2]]'
+  raw: '[''[6000, 4500]'', ''[4500, 6000]'']'
+- substituted: '[''[6000, 4500]'', ''[4500, 6000]'']'
   value:
-  - - 7000.0
-    - 7000.0
+  - '[6000, 4500]'
+  - '[4500, 6000]'
 MOBILITY.BS_SCHEME:
 - source: daisy_chain.yaml
-  raw: '[[${AREA_X}-1000, ${AREA_Y}/2]]'
-- substituted: '[[14000-1000, 14000/2]]'
+  raw: '[[6000, 7500], [7500, 6000]]'
+- substituted: '[[6000, 7500], [7500, 6000]]'
   value:
-  - - 13000
-    - 7000.0
+  - - 6000
+    - 7500
+  - - 7500
+    - 6000
 MAXIMUM_ROUTING_RANGE:
 - source: daisy_chain.yaml
-  value: 1600
+  raw: '600'
+- substituted: '600'
+  value: 600
