@@ -994,11 +994,11 @@ def updateRouteMCS(routeIdx: Optional[int] = None, force: bool = False):
         # for i in range(len(updatedMCSIndex)):
         #     each_node = parameters.NODE_REGISTRY[f"Node{parameters.Route_Details[routeNo]['Route'][i]}"]
             # updatedMCSIndex[i] = each_node.operating_mcs
-        
-        if routeNo in parameters.FORCED_ROUTE_MCS:
+
+        if str(routeNo) in parameters.FORCED_ROUTE_MCS:
             route_node_mcs_map = parameters.FORCED_ROUTE_MCS[routeNo]
             for i in range(len(updatedMCSIndex)):
-                if parameters.Route_Details[routeNo]['Route'][i] in route_node_mcs_map:
+                if str(parameters.Route_Details[routeNo]['Route'][i]) in route_node_mcs_map:
                     updatedMCSIndex[i] = route_node_mcs_map[parameters.Route_Details[routeNo]['Route'][i]]
 
         # for i in range(len(updatedMCSIndex)):

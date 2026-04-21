@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
 		
 	node_distances = [500, 1000, 2000] #Small medium large
-	flow_data_rates = [2.0, 4.0, 8.0]
+	flow_data_rates = [[2.0,2.0], [4.0,4.0], [8.0,8.0]]
 	forced_routes = [[0,12], [6,11]]
 	forced_mcs = [
 		{
@@ -69,7 +69,7 @@ if __name__ == '__main__':
 	for topology, target, node_distance in zip(topology_files, targets, node_distances):
 		for data_rate in flow_data_rates:
 			for mcs_name, mcs_dict in zip(mcs_scheme_names, forced_mcs):
-				output_folder = f'{results_folder}{topology.split("/")[3].split(".")[0]}_{node_distance}_{str(data_rate).replace(".","-")}_{mcs_name}/'
+				output_folder = f'{results_folder}{topology.split("/")[3].split(".")[0]}_{node_distance}_{str(data_rate[0]).replace(".","-")}_{mcs_name}/'
 				# print(f"Simulating {count}/{total_count}: {output_folder}")
 
 				# do overrides
@@ -77,7 +77,7 @@ if __name__ == '__main__':
 				overrides['STATIC_TOPOLOGY_PATH'] = f'{topology}'
 				overrides['MOBILITY.TARGET_LOCATION'] = f'{target}'
 				overrides['MAXIMUM_ROUTING_RANGE'] = str(node_distance+100)
-				overrides['PAYLOAD_DATA_RATE'] = f'[{data_rate}]'
+				overrides['PAYLOAD_DATA_RATE'] = f'{data_rate}'
 				if num_base_stations != 1:
 					overrides['NUMBER_OF_BS'] =  f'{num_base_stations}'
 					if node_distance == 500:
@@ -100,11 +100,10 @@ if __name__ == '__main__':
 				count += 1
 				
 	max_count = len(execution_commands)
-	first_command = [execution_commands[0]]
-	with ProcessPoolExecutor(max_workers=4) as executor:
+	with ProcessPoolExecutor() as executor:
 		futures = [
 			executor.submit(subprocess, comm, index, max_count)
-			for comm,index in first_command
+			for comm,index in execution_commands
 		]
 		for f in as_completed(futures):
 			print(f.result())

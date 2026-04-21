@@ -152,21 +152,24 @@ PACKET_LOSS_RATE:
   value: 0
 PAYLOAD_DATA_RATE:
 - source: daisy_chain.yaml
-  raw: '[2.0]'
-- substituted: '[2.0]'
+  raw: '[2.0, 2.0]'
+- substituted: '[2.0, 2.0]'
   value:
+  - 2.0
   - 2.0
 TARGET_PKT_GENERATION_RATE:
 - source: daisy_chain.yaml
   raw: '[round(61 * i) for i in ${PAYLOAD_DATA_RATE}]'
-- substituted: '[round(61 * i) for i in [2.0]]'
+- substituted: '[round(61 * i) for i in [2.0, 2.0]]'
   value:
+  - 122.0
   - 122.0
 PACKET_INTER_ARRIVAL_TIME:
 - source: daisy_chain.yaml
   raw: '[1e9 * (1.0/i) for i in ${TARGET_PKT_GENERATION_RATE}]'
-- substituted: '[1e9 * (1.0/i) for i in [122.0]]'
+- substituted: '[1e9 * (1.0/i) for i in [122.0, 122.0]]'
   value:
+  - 8196721.31147541
   - 8196721.31147541
 PACKET_TTL:
 - source: daisy_chain.yaml
@@ -199,8 +202,8 @@ MAX_QUEUE_SIZE:
   raw: (max(${PAYLOAD_DATA_RATE}) * 1000000 * ${PACKET_TTL} * (len(${FORCED_ROUTES})
     if ${FORCED_ROUTES} else len(${MOBILITY.TARGET_LOCATION})))/(${BASE_PAYLOAD_LENGTH}
     * 8 * 1000)
-- substituted: (max([2.0]) * 1000000 * 3000000000.0 * (len([[0, 12], [6, 11]]) if
-    [[0, 12], [6, 11]] else len([[6000, 4500], [4500, 6000]])))/(18496 * 8 * 1000)
+- substituted: (max([2.0, 2.0]) * 1000000 * 3000000000.0 * (len([[0, 12], [6, 11]])
+    if [[0, 12], [6, 11]] else len([[6000, 4500], [4500, 6000]])))/(18496 * 8 * 1000)
   value: 81098615.91695502
 NODE_SPEED:
 - source: daisy_chain.yaml
@@ -215,9 +218,9 @@ PKT_GENERATION_START_SEC:
   value: 2000
 PKT_GENERATION_END_SEC:
 - source: daisy_chain.yaml
-  raw: ${PKT_GENERATION_START_SEC} + 100
-- substituted: 2000 + 100
-  value: 2100
+  raw: ${PKT_GENERATION_START_SEC} + 5
+- substituted: 2000 + 5
+  value: 2005
 PKT_GENERATION_START_TIME:
 - source: daisy_chain.yaml
   raw: ${PKT_GENERATION_START_SEC} * 1e9
@@ -226,15 +229,15 @@ PKT_GENERATION_START_TIME:
 PKT_GENERATION_END_TIME:
 - source: daisy_chain.yaml
   raw: ${PKT_GENERATION_END_SEC} * 1e9
-- substituted: 2100 * 1e9
-  value: 2100000000000.0
+- substituted: 2005 * 1e9
+  value: 2005000000000.0
 SIM_TIME:
 - source: daisy_chain.yaml
   raw: ${PKT_GENERATION_END_TIME} + (${PACKET_TTL} if (${PACKET_TTL} != simpy.core.Infinity)
     else 0) + 1e9
-- substituted: 2100000000000.0 + (3000000000.0 if (3000000000.0 != simpy.core.Infinity)
+- substituted: 2005000000000.0 + (3000000000.0 if (3000000000.0 != simpy.core.Infinity)
     else 0) + 1e9
-  value: 2104000000000.0
+  value: 2009000000000.0
 PKT_FORWARDED_SUCCESSFULLY:
 - source: daisy_chain.yaml
   value: 0

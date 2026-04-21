@@ -1,10 +1,11 @@
 Results/*
+Results_Cross/*
 src/compiled_packages/*
 compiled_packages/*
 src/stubgen_output/*
 uv.lock
 src/*.*
-src/nodeTrajectories/Flows0
+src/nodeTrajectories/Flows*/
 **/__pycache__
 !src/*.py
 !src/phero_c.pyx
