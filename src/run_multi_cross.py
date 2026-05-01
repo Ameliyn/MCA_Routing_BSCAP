@@ -1,10 +1,12 @@
 from concurrent.futures import ProcessPoolExecutor, as_completed
+import json
 from pathlib import Path
 import random, os
 
 def subprocess(command: str, index: int, max: int):
 	print(f'Starting execution {index}/{max}')
 	result = os.system(command)
+	# print(command)
 	return f'Finished: {index}/{max} with result: {result}'
 
 
@@ -13,7 +15,7 @@ if __name__ == '__main__':
 		"./nodeTrajectories/positions/crossFlow_7_Small.txt", 
 		"./nodeTrajectories/positions/crossFlow_7_Medium.txt", 
 		"./nodeTrajectories/positions/crossFlow_7_Large.txt"]
-	results_folder = './../Results_Cross/'
+	results_folder = './../Results_Cross_2/'
 	
 	# Set target locations as the first N nodes in the topology (because the last is the base station)
 	num_targets = 2
@@ -88,7 +90,7 @@ if __name__ == '__main__':
 						overrides['MOBILITY.BS_SCHEME'] = [[6000, 12000],[12000, 6000]]
 				if len(forced_routes) > 0:
 					overrides['FORCED_ROUTES'] =  f'{forced_routes}'
-				overrides['FORCED_ROUTE_MCS'] = mcs_dict
+				overrides['FORCED_ROUTE_MCS'] = json.dumps(mcs_dict)
 
 				default_args = f'--config .\\config\\cfg\\daisy_chain.yaml --schema .\\config\\schemas\\daisy_schema.json --no-input'
 				override_string = ''

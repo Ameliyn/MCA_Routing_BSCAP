@@ -2,6 +2,7 @@
 # Sh: File contains funcitonalities required to update node location, generate updated network topology and find new routes.
 # last modified on: Nov 11, 2024
 '''
+import ast
 from pathlib import Path
 from typing import Callable, Iterable, Literal, Optional, ParamSpec, TypeVar, TypedDict, TYPE_CHECKING
 
@@ -994,16 +995,25 @@ def updateRouteMCS(routeIdx: Optional[int] = None, force: bool = False):
         # for i in range(len(updatedMCSIndex)):
         #     each_node = parameters.NODE_REGISTRY[f"Node{parameters.Route_Details[routeNo]['Route'][i]}"]
             # updatedMCSIndex[i] = each_node.operating_mcs
+        print(parameters.FORCED_ROUTE_MCS)
+        print(isinstance(parameters.FORCED_ROUTE_MCS, dict))
+        if not isinstance(parameters.FORCED_ROUTE_MCS, dict):
+            parameters.FORCED_ROUTE_MCS = ast.literal_eval(parameters.FORCED_ROUTE_MCS)
+            print('UPDATED parameters.FORCED_ROUTE_MCS')
+            print(parameters.FORCED_ROUTE_MCS)
+            print(isinstance(parameters.FORCED_ROUTE_MCS, dict))
 
-        if str(routeNo) in parameters.FORCED_ROUTE_MCS:
+        if routeNo in parameters.FORCED_ROUTE_MCS.keys():
+            print('Route has a forced MCS!')
             route_node_mcs_map = parameters.FORCED_ROUTE_MCS[routeNo]
             for i in range(len(updatedMCSIndex)):
-                if str(parameters.Route_Details[routeNo]['Route'][i]) in route_node_mcs_map:
+                if parameters.Route_Details[routeNo]['Route'][i] in route_node_mcs_map.keys():
+                    print(f"{i}: {updatedMCSIndex[i]} -> {route_node_mcs_map[parameters.Route_Details[routeNo]['Route'][i]]}")
                     updatedMCSIndex[i] = route_node_mcs_map[parameters.Route_Details[routeNo]['Route'][i]]
 
         # for i in range(len(updatedMCSIndex)):
         #     each_node = parameters.NODE_REGISTRY[f"Node{parameters.Route_Details[routeNo]['Route'][i]}"]
-            # each_node.operating_mcs = updatedMCSIndex[i]
+        #     each_node.operating_mcs = updatedMCSIndex[i]
             
         print("routeNo, updatedMCSIndex = ", routeNo, updatedMCSIndex)
         parameters.Route_Details[routeNo]['MCS_Index'] = updatedMCSIndex

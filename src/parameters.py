@@ -703,7 +703,7 @@ def initialize_NODES_FLOWLOGS_QUEUE_PACKETGENERATION(env: simpy.Environment, nod
 	# Sh: Setup source-destinaiton pairs
 	for eachRouteIdx in Route_Details:
 		eachRoute = Route_Details[eachRouteIdx]['Route']
-
+		
 		# Sanity check condition. Discard route if (a) single node in a route, (b) src == dst
 		if ((len(eachRoute) < 2) or (eachRoute[0] == eachRoute[-1])):
 			continue
