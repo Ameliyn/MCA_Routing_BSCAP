@@ -1,0 +1,8 @@
+Node Name,CTS Retry,ACK Retry,# Receiver Drops,# Pkts Receiver Drops,# Sent ACKs,# Pkts ACK Sent For,# Retransmissions,# Pkts Retransmitted,# Receptions,# Pkts Received,# Forwards,# Pkts Forwarded,drop_expiry,drop_q_mngmnt,drop_retry,drop_overflow,drop_no_route
+Node0,599,8317,0,0,0,0,8916,14946,0,0,13572,24295,0,0,0,0,0
+Node1,1137,7424,7215,12659,13572,25373,8561,15531,13572,24295,11173,19728,0,0,0,0,0
+Node2,908,146,5980,11740,11174,21030,1054,1945,11174,19729,10740,19726,0,0,0,0,0
+Node3,94,538,495,509,10740,19767,632,1111,10740,19726,10678,19724,0,0,0,0,0
+Node4,21,597,601,610,11153,20604,618,1047,11153,20575,10611,19722,0,0,0,0,0
+Node5,0,0,8,16,11196,20715,0,0,11196,20710,0,0,0,0,0,0,0
+Node6,0,0,0,0,0,0,0,0,0,0,0,0,,,,,
