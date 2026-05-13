@@ -27,6 +27,14 @@ if __name__ == '__main__':
 	forced_routes = [[0,12], [6,11]]
 	forced_mcs = [
 		{
+			0: {0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 12:0}, 
+   			1: {6:0, 7:0, 8:0, 3:0, 9:0, 10:0, 11:0}
+		},
+		{
+			0: {0:1, 1:1, 2:1, 3:1, 4:1, 5:1, 12:1}, 
+   			1: {6:1, 7:1, 8:1, 3:1, 9:1, 10:1, 11:1}
+		},
+		{
 			0: {0:0, 1:0, 2:0, 3:1, 4:0, 5:0, 12:0}, 
    			1: {6:0, 7:0, 8:0, 3:1, 9:0, 10:0, 11:0}
 		},
@@ -59,10 +67,14 @@ if __name__ == '__main__':
    			1: {6:0, 7:0, 8:0, 3:1, 9:1, 10:1, 11:0}
 		}
 	]
-	mcs_scheme_names = ['hotspot_1', 'hotspot+1_1', 'hotspot+2_1', 'hotspot_0', 'hotspot+1_0', 'hotspot+2_0', 'hotspot+down_1', 'hotspot+down2_1']
+	mcs_scheme_names = ['all_0', 'all_1', 'hotspot_1', 'hotspot+1_1', 'hotspot+2_1', 'hotspot_0', 'hotspot+1_0', 'hotspot+2_0', 'hotspot+down_1', 'hotspot+down2_1']
 	num_base_stations = 2
 		
 	# Load types
+	flow_data_rates = [[2.0,2.0], [4.0,4.0]]
+	forced_mcs = [forced_mcs[0], forced_mcs[1]]
+	mcs_scheme_names = [mcs_scheme_names[0], mcs_scheme_names[1]]
+
 
 	total_count = len(topology_files) * len(flow_data_rates) * len(forced_mcs)
 	count = 1
@@ -102,7 +114,7 @@ if __name__ == '__main__':
 				count += 1
 				
 	max_count = len(execution_commands)
-	with ProcessPoolExecutor() as executor:
+	with ProcessPoolExecutor(max_workers=6) as executor:
 		futures = [
 			executor.submit(subprocess, comm, index, max_count)
 			for comm,index in execution_commands
